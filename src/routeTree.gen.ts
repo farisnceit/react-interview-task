@@ -10,11 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as MiniSearchFilterRouteImport } from './routes/mini-search-filter'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as IndexRouteImport } from './routes/index'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniSearchFilterRoute = MiniSearchFilterRouteImport.update({
+  id: '/mini-search-filter',
+  path: '/mini-search-filter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -22,30 +30,52 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/mini-search-filter': typeof MiniSearchFilterRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/mini-search-filter': typeof MiniSearchFilterRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/about': typeof AboutRoute
+  '/mini-search-filter': typeof MiniSearchFilterRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/services'
+  fullPaths: '/' | '/404' | '/about' | '/mini-search-filter' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/services'
-  id: '__root__' | '/about' | '/services'
+  to: '/' | '/404' | '/about' | '/mini-search-filter' | '/services'
+  id: '__root__' | '/' | '/404' | '/about' | '/mini-search-filter' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
   AboutRoute: typeof AboutRoute
+  MiniSearchFilterRoute: typeof MiniSearchFilterRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -58,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mini-search-filter': {
+      id: '/mini-search-filter'
+      path: '/mini-search-filter'
+      fullPath: '/mini-search-filter'
+      preLoaderRoute: typeof MiniSearchFilterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -65,11 +102,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  R404Route: R404Route,
   AboutRoute: AboutRoute,
+  MiniSearchFilterRoute: MiniSearchFilterRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
