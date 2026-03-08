@@ -1,75 +1,34 @@
-# React + TypeScript + Vite
+# react-interview-task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is a collection of small React interview tasks packaged in one app. Each task is a focused exercise accessible from the Home page.
 
-Currently, two official plugins are available:
+**Overview**
+- Each task lives in `src/routes` as its own page.
+- Tasks aim to assess core React skills: state, rendering, performance, and UX.
+- Data and utilities are colocated for simplicity.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Run**
+- Install: npm install
+- Dev: npm run dev
+- Build: npm run build
+- Preview: npm run preview
+- Lint: npm run lint
 
-## React Compiler
+**Tasks Catalog**
+- Mini Search Filter — Filter a movie list by title and genre and render result cards. Open from Home or directly at [mini-search-filter.tsx](file:///e:/react-projects/react-interview-task/src/routes/mini-search-filter.tsx). Data source: [Film.ts](file:///e:/react-projects/react-interview-task/src/data/Film.ts).
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+**Start Here**
+- Use the Home page to navigate tasks: [index.tsx](file:///e:/react-projects/react-interview-task/src/routes/index.tsx).
+- Shared layout and navigation are defined in [__root.tsx](file:///e:/react-projects/react-interview-task/src/routes/__root.tsx).
 
-Note: This will impact Vite dev & build performances.
+**Suggested Extensions**
+- Mini Search Filter
+  - Case-insensitive search and input debounce
+  - Empty state and loading skeletons
+  - Pagination or list virtualization
+  - Extract Card and Filters components
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Add A New Task**
+- Create a new file in `src/routes`, e.g. `my-task.tsx`.
+- Link it from the Home page to expose the task.
+- Keep tasks self-contained with clear UI and requirements.
